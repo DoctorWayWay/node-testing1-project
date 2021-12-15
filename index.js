@@ -84,6 +84,8 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
+    this.seasons = ["summer", "fall", "winter", "spring"]
+    this.count = 0
   }
 
   /**
@@ -100,6 +102,12 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    if (this.count === this.seasons.length) {
+      this.count = 1
+      return "summer"
+    }
+    this.count++
+    return this.seasons[this.count - 1]
   }
 }
 
