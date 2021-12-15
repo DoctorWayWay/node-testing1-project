@@ -8,6 +8,10 @@
  */
 function trimProperties(obj) {
   // ✨ implement
+  for (let item in obj) {
+    obj[item] = obj[item].trim()
+  }
+  return obj
 }
 
 /**
