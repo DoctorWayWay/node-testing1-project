@@ -39,12 +39,29 @@ describe('[Exercise 3] findLargestInteger', () => {
 
 describe('[Exercise 4] Counter', () => {
   let counter
+  const initialNumber = 3
   beforeEach(() => {
-    counter = new utils.Counter(3) // each test must start with a fresh couter
+    counter = new utils.Counter(initialNumber) // each test must start with a fresh couter
   })
-  // test('[6] the FIRST CALL of counter.countDown returns the initial count', () => {})
-  // test('[7] the SECOND CALL of counter.countDown returns the initial count minus one', () => {})
-  // test('[8] the count eventually reaches zero but does not go below zero', () => {})
+  test('[6] the FIRST CALL of counter.countDown returns the initial count', () => {
+    const actual = counter.countDown()
+    const expected = initialNumber
+    expect(actual).toBe(expected)
+  })
+  test('[7] the SECOND CALL of counter.countDown returns the initial count minus one', () => {
+    counter.countDown() // first countDown() call
+    const actual = counter.countDown()
+    const expected = initialNumber - 1
+    expect(actual).toBe(expected)
+  })
+  test('[8] the count eventually reaches zero but does not go below zero', () => {
+    for (let i = 0; i < initialNumber; i++) {
+      counter.countDown()
+    }
+    const actual = counter.countDown()
+    const expected = 0
+    expect(actual).toBe(expected)
+  })
 })
 
 describe('[Exercise 5] Seasons', () => {
