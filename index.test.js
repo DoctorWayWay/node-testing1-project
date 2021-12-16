@@ -132,12 +132,13 @@ describe('[Exercise 6] Car', () => {
     expect(actual).toBe(expected)
   })
   test('[17] refueling allows to keep driving', () => {
-    focus.drive(601)
-    focus.refuel(20)
-    focus.drive(601)
+    focus.drive(1000) // cars max driving distance is 600
+    focus.refuel(30) // trying to fuel tank above capacity (set at 20)
+    focus.drive(1000)
     const actual = focus.odometer
     const expected = 1200
     expect(actual).toBe(expected)
+    expect(focus.tank).toBe(0)
   })
   test('[18] adding fuel to a full tank has no effect', () => {
     focus.drive(601) // deplete tank
@@ -148,6 +149,14 @@ describe('[Exercise 6] Car', () => {
 })
 
 describe('[Exercise 7] isEvenNumberAsync', () => {
-  // test('[19] resolves true if passed an even number', () => {})
-  // test('[20] resolves false if passed an odd number', () => {})
+  test('[19] resolves true if passed an even number', async () => {
+    const actual = await utils.isEvenNumberAsync(6)
+    expect(actual).toEqual(true)
+    expect(actual).not.toEqual("true")
+  })
+  test('[20] resolves false if passed an odd number', async () => {
+    const actual = await utils.isEvenNumberAsync(5)
+    expect(actual).toEqual(false)
+    expect(actual).not.toEqual("false")
+  })
 })
