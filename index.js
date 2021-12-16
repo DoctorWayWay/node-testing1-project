@@ -122,8 +122,9 @@ class Car {
     this.odometer = 0 // car initilizes with zero miles
     this.tank = tankSize // car initiazes full of gas
     // ✨ initialize whatever other properties are needed
+    this.mpg = mpg
+    this.name = name
   }
-
   /**
    * [Exercise 6B] Car.prototype.drive adds miles to the odometer and consumes fuel according to mpg
    * @param {string} distance - the distance we want the car to drive
@@ -139,6 +140,25 @@ class Car {
    */
   drive(distance) {
     // ✨ implement
+    if ((this.tank * this.mpg) > distance) {
+      this.tank = distance / this.mpg
+      this.odometer += distance
+      return this.odometer
+    }
+    if (this.tank === 0) {
+      return this.odometer
+    }
+    this.tank -= (distance / this.mpg)
+    this.odometer += distance
+    while (this.tank < 0) {
+      this.tank++
+      this.odometer -= this.mpg
+      if (this.tank > 0) {
+        this.odometer += (this.tank * this.mpg)
+        this.tank = 0
+      }
+    }
+    return this.odometer
   }
 
   /**
@@ -154,6 +174,11 @@ class Car {
    */
   refuel(gallons) {
     // ✨ implement
+    this.tank += gallons
+    if (this.tank > 20) {
+      this.tank = 20
+    }
+    return this.odometer
   }
 }
 
